@@ -9,14 +9,17 @@ const createUser = async (data: User): Promise<User> => {
 };
 
 const gerAllUsers = async () => {
-  const result = await prisma.user.findMany({
-    // select:{
-    //   email:true,
-    // }
-    include: {
-      profile: true,
-    },
-  });
+  // const result = await prisma.user.findMany({
+  //   // select:{
+  //   //   email:true,
+  //   // }
+  //   include: {
+  //     profile: true,
+  //   },
+  // });
+
+  const result = await prisma.$queryRaw`SELECT * FROM users`;
+
   return result;
 };
 
